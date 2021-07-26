@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/ListSpecialties" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/ListEmployees" />
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/DetailInfo" />
+
+    </LinearLayout>
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/employee_list"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       tools:listitem="">
+
+   </androidx.recyclerview.widget.RecyclerView>
+
+</FrameLayout>

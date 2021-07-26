@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ViewSpecialties</string>
+    <string name="ListSpecialties">Список специальностей</string>
+    <string name="ListEmployees">Список работников</string>
+    <string name="DetailInfo">Детальная информация</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Список специальностей</string>
+</resources>
