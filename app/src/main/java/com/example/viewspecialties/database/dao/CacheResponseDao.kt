@@ -3,9 +3,7 @@ package com.example.viewspecialties.database.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.viewspecialties.database.entity.CacheResponseEntity
-import com.example.viewspecialties.listspecialties.model.ObjectResponse
-import com.example.viewspecialties.listspecialties.model.Speciality
+import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
 
 @Dao
 interface CacheResponseDao {

@@ -5,4 +5,6 @@
     <string name="DetailInfo">Детальная информация</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Список специальностей</string>
+    <string name="employee_detail_info">Детальная иформация по пользователю</string>
+
 </resources>

@@ -1,11 +1,10 @@
-package com.example.viewspecialties.listspecialties.view
+package com.example.viewspecialties.presentation.listspecialties.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewspecialties.R
-import com.example.viewspecialties.listspecialties.model.Employee
-import com.example.viewspecialties.listspecialties.model.Speciality
+import com.example.viewspecialties.presentation.listspecialties.model.Speciality
 
 
 class SpecialtyListAdapter :  RecyclerView.Adapter<SpecialtyViewHolder>(){

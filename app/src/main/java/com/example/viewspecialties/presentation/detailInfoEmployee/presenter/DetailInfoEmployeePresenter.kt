@@ -1,11 +1,11 @@
-package com.example.viewspecialties.detailInfoEmployee.presenter
+package com.example.viewspecialties.presentation.detailInfoEmployee.presenter
 
 import com.example.viewspecialties.BasePresenter
 import com.example.viewspecialties.cacheRepository.CacheDataRepository
-import com.example.viewspecialties.detailInfoEmployee.view.DetailFragment
-import com.example.viewspecialties.listspecialties.model.Employee
-import com.example.viewspecialties.listspecialties.model.ObjectResponse
-import com.example.viewspecialties.listspecialties.model.Speciality
+import com.example.viewspecialties.presentation.detailInfoEmployee.view.DetailFragment
+import com.example.viewspecialties.presentation.listspecialties.model.Employee
+import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.presentation.listspecialties.model.Speciality
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,8 +19,8 @@ class DetailInfoEmployeePresenter : BasePresenter<DetailFragment>() {
 
     private fun getDataDetailEmployee() {
         CoroutineScope(Dispatchers.IO).launch {
-            var responseData = CacheDataRepository.getDataEmployeesService() as ObjectResponse
-            getSpecialtyModel(responseData)
+            var responseData = CacheDataRepository.requestData().await()
+            getSpecialtyModel(responseData!!)
         }
     }
 
@@ -46,7 +46,8 @@ class DetailInfoEmployeePresenter : BasePresenter<DetailFragment>() {
                     l_name = resp.l_name,
                     birthday = resp.birthday,
                     avatr_url = if (!resp.avatr_url.isNullOrBlank()) resp.avatr_url else "",
-                    specialty = specialty
+                    specialty = specialty,
+                    age = resp.age
                 )
             )
         }

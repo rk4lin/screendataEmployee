@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listEmployeesFragment"
-        android:name="com.example.viewspecialties.listEmployees.view.ListEmployeesFragment"
+        android:name="com.example.viewspecialties.presentation.listEmployees.view.ListEmployeesFragment"
         android:label="fragment_list_employees"
         tools:layout="@layout/fragment_list_employees" >
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/listSpecialtiesFragment"
-        android:name="com.example.viewspecialties.listspecialties.view.ListSpecialtiesFragment"
+        android:name="com.example.viewspecialties.presentation.listspecialties.view.ListSpecialtiesFragment"
         android:label="fragment_list_specialties"
         tools:layout="@layout/fragment_list_specialties" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.viewspecialties.detailInfoEmployee.view.DetailFragment"
+        android:name="com.example.viewspecialties.presentation.detailInfoEmployee.view.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
     <fragment

@@ -1,4 +1,4 @@
-package com.example.viewspecialties.listspecialties.view
+package com.example.viewspecialties.presentation.listspecialties.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.viewspecialties.IBaseView
-import com.example.viewspecialties.R
 import com.example.viewspecialties.databinding.FragmentListSpecialtiesBinding
-import com.example.viewspecialties.listspecialties.model.Speciality
-import com.example.viewspecialties.listspecialties.presenter.ListSpecialtiesPresenter
+import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import com.example.viewspecialties.presentation.listspecialties.presenter.ListSpecialtiesPresenter
 
 class ListSpecialtiesFragment : Fragment(), IBaseView {
 

@@ -1,4 +1,4 @@
-package com.example.viewspecialties.detailInfoEmployee.view
+package com.example.viewspecialties.presentation.detailInfoEmployee.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.viewspecialties.IBaseView
-import com.example.viewspecialties.R
 import com.example.viewspecialties.databinding.FragmentDetailBinding
-import com.example.viewspecialties.databinding.FragmentListSpecialtiesBinding
-import com.example.viewspecialties.detailInfoEmployee.presenter.DetailInfoEmployeePresenter
-import com.example.viewspecialties.listspecialties.model.Employee
-import com.example.viewspecialties.listspecialties.view.SpecialtyListAdapter
+import com.example.viewspecialties.presentation.detailInfoEmployee.presenter.DetailInfoEmployeePresenter
+import com.example.viewspecialties.presentation.listspecialties.model.Employee
 
 class DetailFragment : Fragment(), IBaseView {
 

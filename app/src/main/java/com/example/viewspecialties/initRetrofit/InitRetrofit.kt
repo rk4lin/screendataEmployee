@@ -1,14 +1,9 @@
 package com.example.viewspecialties.initRetrofit
 
-import android.util.Log
 import com.example.viewspecialties.GitLabApi
-import com.example.viewspecialties.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -41,13 +36,13 @@ object InitRetrofit {
         return retrofit
     }
 
-    private suspend fun getObjectResponse() : ObjectResponse?{
+
+     suspend fun getObjectResponse() : ObjectResponse?{
 
         var retrofit = getRetrofit()
         var service = retrofit.create(GitLabApi::class.java)
 
         var result = service.getListEmployees().await()
-        Log.d("TAG", "${result.body()}")
         if(result.isSuccessful) {
             return result.body()
         }
@@ -57,11 +52,11 @@ object InitRetrofit {
 
     }
 
-    suspend fun getCurrentResult() =
+   /* suspend fun getCurrentResult() =
         CoroutineScope(Dispatchers.IO).async {
             return@async getObjectResponse()
 
-        }.await()
+        }.await()*/
 
     }
 

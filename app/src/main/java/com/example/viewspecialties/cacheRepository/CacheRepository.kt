@@ -1,62 +1,91 @@
 package com.example.viewspecialties.cacheRepository
 
-import android.app.Application
 import android.util.Log
-import androidx.annotation.WorkerThread
 import com.example.viewspecialties.database.AppDatabase
-import com.example.viewspecialties.database.dao.CacheResponseDao
-import com.example.viewspecialties.database.entity.CacheEmployeeEntity
-import com.example.viewspecialties.database.entity.CacheResponseEntity
-import com.example.viewspecialties.database.entity.CacheSpecialtyEntity
-import com.example.viewspecialties.listspecialties.model.ObjectResponse
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
+import com.example.viewspecialties.presentation.listspecialties.model.Employee
+import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import kotlinx.coroutines.*
+import java.lang.Exception
 
-object CacheRepository{
+object CacheRepository {
 
-// TODO сохранение в бд
-    fun updateCacheAsync(data: ObjectResponse?) = CoroutineScope(Dispatchers.IO).async {
-       /* var employees = data?.resp?.map { e ->
-            CacheEmployeeEntity(
-                1,
-                e.f_name,
-                e.l_name,
-                e.birthday,
-                e.avatr_url
-            )
+    //эту штуку будем использовать в interactor дергать
+    fun getData(): Deferred<ObjectResponse?> {
+        return CoroutineScope(Dispatchers.IO).async {
+
+            try {
+                val db = AppDatabase.invoke()
+                val objectResponse =db.cacheResponseDao().getData()
+
+                if(objectResponse == null){
+                    return@async null
+                }else{
+                    val data = ObjectResponse(
+                        objectResponse.resp.map{ empl ->
+                            Employee(
+                                f_name = empl.f_name,
+                                l_name = empl.l_name,
+                                birthday = empl.birthday,
+                                age = 26, // TODO тут нужно высчетать возраст относительно даты рождения
+                                avatr_url = empl.avatr_url,
+                                specialty = empl.specialty?.map{
+                                    Speciality(
+                                        it.speciality_id,
+                                        it.name
+                                    )//Specialty
+                                }//map
+                            )//Employee
+                        }//map Employee
+                    )//Objectresponse
+
+                    return@async data
+                }//else
+            } catch (ex: Exception){
+
+                return@async null
+            }
+
         }
+    }
+  private fun getAge(birthday: String) : Int{
+      return 11
+  }
 
-        var specialty = data?.resp?.forEach { resp ->
-            resp.specialty?.map { s ->
-                CacheSpecialtyEntity(
-                    1,
-                    s.speciality_id,
-                    s.name
+    fun insertData(data: ObjectResponse)=
+        CoroutineScope(Dispatchers.IO).async {
+            /*var employees = data.resp.map{e->
+                CacheEmployeeEntity(
+                    id =0,
+                    f_name = e.f_name,
+                    l_name = e.l_name,
+                    birthday = e.birthday,
+                    avatr_url = e.avatr_url,
+                    specialty_key = 0
+
                 )
             }
-        }
-*/
-        try {
-            var db = AppDatabase.invoke()
-            db.runInTransaction{
-                db.cacheResponseDao().insertResponse(data!!)
+
+             data.resp.forEach{
+                 var speciality=   it.specialty?.map{
+                        CacheSpecialtyEntity(
+                            key = 0,
+                            specialty_id = it.speciality_id,
+                            name = it.name
+                        )
+                    }
+                 }*/
+
+            try{
+                val db = AppDatabase.invoke()
+               db.cacheResponseDao().insertResponse(data)
+                return@async true
+            }catch (ex: Exception){
+                Log.e("CachRespository_Insert", "Ошибка: ${ex.message}", ex)
+                return@async false
             }
-            return@async true
-        } catch (ex: Exception) {
-            Log.e("CacheRepository", "Ошибка: ${ex.message}", ex)
-            return@async false
-        }
-
-    }
-/*
-    val allData: ObjectResponse = responseDao.getData()
-
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun insert(responseData: CacheResponseEntity){
-        responseDao.insertResponse(responseData)}*/
+            }
 }
+
+
 

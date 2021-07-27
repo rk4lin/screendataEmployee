@@ -1,10 +1,10 @@
-package com.example.viewspecialties.listspecialties.presenter
+package com.example.viewspecialties.presentation.listspecialties.presenter
 
 import com.example.viewspecialties.BasePresenter
 import com.example.viewspecialties.cacheRepository.CacheDataRepository
-import com.example.viewspecialties.listspecialties.model.ObjectResponse
-import com.example.viewspecialties.listspecialties.model.Speciality
-import com.example.viewspecialties.listspecialties.view.ListSpecialtiesFragment
+import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import com.example.viewspecialties.presentation.listspecialties.view.ListSpecialtiesFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

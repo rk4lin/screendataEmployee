@@ -1,12 +1,10 @@
-package com.example.viewspecialties.detailInfoEmployee.view
+package com.example.viewspecialties.presentation.detailInfoEmployee.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewspecialties.R
-import com.example.viewspecialties.listspecialties.model.Employee
-import com.example.viewspecialties.listspecialties.model.Speciality
-import com.example.viewspecialties.listspecialties.view.SpecialtyViewHolder
+import com.example.viewspecialties.presentation.listspecialties.model.Employee
 
 class DetailListAdapter:  RecyclerView.Adapter<DetailViewHolder>() {
 
