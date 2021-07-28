@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigate_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/listSpecialtiesFragment">
 
     <fragment
         android:id="@+id/listEmployeesFragment"
@@ -18,22 +18,14 @@
         android:id="@+id/listSpecialtiesFragment"
         android:name="com.example.viewspecialties.presentation.listspecialties.view.ListSpecialtiesFragment"
         android:label="fragment_list_specialties"
-        tools:layout="@layout/fragment_list_specialties" />
+        tools:layout="@layout/fragment_list_specialties" >
+        <action
+            android:id="@+id/action_listSpecialtiesFragment_to_listEmployeesFragment"
+            app:destination="@id/listEmployeesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.viewspecialties.presentation.detailInfoEmployee.view.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.viewspecialties.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_listEmployeesFragment"
-            app:destination="@id/listEmployeesFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_listSpecialtiesFragment"
-            app:destination="@id/listSpecialtiesFragment" />
-    </fragment>
 </navigation>

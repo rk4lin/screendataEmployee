@@ -16,28 +16,32 @@ class ListSpecialtiesPresenter : BasePresenter<ListSpecialtiesFragment>() {
         getData()
     }
 
-    private fun getData(){
+    private fun getData() {
         CoroutineScope(Dispatchers.IO).launch {
-          var responseData = CacheDataRepository.getDataEmployeesService().await()
-            getSpecialtyModel(responseData)
+            var responseData = CacheDataRepository.requestData().await()
+            if (responseData != null) {
+                getSpecialtyModel(responseData)
+            }
         }
     }
 
-    private fun getSpecialtyModel(data: ObjectResponse){
+    private fun getSpecialtyModel(data: ObjectResponse) {
 
         var speciality = mutableListOf<Speciality>()
 
-        data?.resp.forEach{resp->
-            resp.specialty.map{spec->
-             speciality.add(Speciality(
-                    speciality_id = spec.speciality_id,
-                    name = spec.name
+        data?.resp.forEach { resp ->
+            resp.specialty?.map { spec ->
+                speciality.add(
+                    Speciality(
+                        speciality_id = spec.speciality_id,
+                        name = spec.name
+                    )
                 )
-             )
             }
         }
-
-      view?.getDataSpecialty(speciality)
+        CoroutineScope(Dispatchers.Main).launch {
+            view?.getDataSpecialty(speciality)
+        }
     }
 
 

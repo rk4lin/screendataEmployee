@@ -20,7 +20,7 @@ class ListSpecialtiesFragment : Fragment(), IBaseView {
     private var _binding: FragmentListSpecialtiesBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+   override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = ListSpecialtiesPresenter()
     }
