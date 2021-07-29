@@ -2,9 +2,11 @@ package com.example.viewspecialties.cacheRepository
 
 import android.util.Log
 import com.example.viewspecialties.database.AppDatabase
-import com.example.viewspecialties.presentation.listspecialties.model.Employee
-import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
-import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import com.example.viewspecialties.modelService.Employee
+import com.example.viewspecialties.modelService.ObjectResponse
+import com.example.viewspecialties.modelService.Specialty
+import com.example.viewspecialties.presentation.detailInfoEmployee.model.EmployeeLocal
+import com.example.viewspecialties.presentation.listspecialties.model.SpecialtyLocal
 import kotlinx.coroutines.*
 import java.lang.Exception
 
@@ -27,11 +29,11 @@ object CacheRepository {
                                 f_name = empl.f_name,
                                 l_name = empl.l_name,
                                 birthday = empl.birthday,
-                                age = 26, // TODO тут нужно высчетать возраст относительно даты рождения
+                                 // TODO тут нужно высчетать возраст относительно даты рождения
                                 avatr_url = empl.avatr_url,
                                 specialty = empl.specialty?.map{
-                                    Speciality(
-                                        it.speciality_id,
+                                    Specialty(
+                                        it.specialty_id,
                                         it.name
                                     )//Specialty
                                 }//map

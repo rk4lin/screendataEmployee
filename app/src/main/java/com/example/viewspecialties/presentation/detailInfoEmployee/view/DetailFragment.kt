@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import com.example.viewspecialties.IBaseView
 import com.example.viewspecialties.databinding.FragmentDetailBinding
 import com.example.viewspecialties.presentation.detailInfoEmployee.presenter.DetailInfoEmployeePresenter
-import com.example.viewspecialties.presentation.listspecialties.model.Employee
+import com.example.viewspecialties.modelService.Employee
+import com.example.viewspecialties.modelService.Specialty
 
 class DetailFragment : Fragment(), IBaseView {
 
@@ -44,6 +45,10 @@ class DetailFragment : Fragment(), IBaseView {
     }
     fun getDataDetailEmployee(data: MutableList<Employee>){
 
+    }
+
+    override fun getDataSpecialty(data: MutableList<Specialty>) {
+        TODO("Not yet implemented")
     }
 
 }

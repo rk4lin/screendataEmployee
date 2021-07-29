@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewspecialties.R
-import com.example.viewspecialties.presentation.listspecialties.model.Employee
+import com.example.viewspecialties.modelService.Employee
 
 class DetailListAdapter:  RecyclerView.Adapter<DetailViewHolder>() {
 

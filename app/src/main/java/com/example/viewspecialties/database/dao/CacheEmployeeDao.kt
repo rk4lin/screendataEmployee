@@ -1,7 +1,7 @@
 package com.example.viewspecialties.database
 
 import androidx.room.*
-import com.example.viewspecialties.presentation.listspecialties.model.Employee
+import com.example.viewspecialties.modelService.Employee
 
 
 @Dao

@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewspecialties.R
-import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import com.example.viewspecialties.modelService.Specialty
 
 
 class SpecialtyListAdapter :  RecyclerView.Adapter<SpecialtyViewHolder>(){
     /*var employeeLocallist = mutableListOf<Employee>()*/
-    var specialtyLocallist = mutableListOf<Speciality>()
+    var specialtyLocallist = mutableListOf<Specialty>()
 
-    fun setDataSpecialty(items: List<Speciality>){
+    fun setDataSpecialty(items: List<Specialty>){
 
         specialtyLocallist.clear()
         specialtyLocallist.addAll(items)

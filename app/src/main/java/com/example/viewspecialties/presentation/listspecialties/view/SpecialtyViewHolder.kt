@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewspecialties.R
-import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import com.example.viewspecialties.modelService.Specialty
 
 
 class SpecialtyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -13,8 +13,8 @@ class SpecialtyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var name: TextView = view.findViewById(R.id.specialty_name)
 
 
-    fun bind(specialty: Speciality){
-       id.text = specialty.speciality_id.toString()
+    fun bind(specialty: Specialty){
+       id.text = specialty.specialty_id.toString()
        name.text = specialty.name
     }
 }

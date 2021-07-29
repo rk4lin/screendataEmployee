@@ -5,11 +5,14 @@ import android.content.Context
 
 class AppSpecialty : Application() {
 
+   init{
+       instance = this
+   }
+
     companion object{
-        private val instance : AppSpecialty? = null
+        private var instance : AppSpecialty? = null
 
         fun getContext() : Context {
-
             return instance!!.applicationContext
         }
     }

@@ -2,10 +2,10 @@ package com.example.viewspecialties.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import com.example.viewspecialties.modelService.Specialty
 
 @Dao
 interface CacheSpecialtyDao {
     @Query("SELECT * FROM cache_specialty")
-    fun getSpecialty() : List<Speciality>
+    fun getSpecialty() : List<Specialty>
 }

@@ -1,7 +1,7 @@
 package com.example.viewspecialties.cacheRepository
 
 import com.example.viewspecialties.initRetrofit.InitRetrofit
-import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.modelService.ObjectResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -26,7 +26,7 @@ object CacheDataRepository {
 
         CoroutineScope(Dispatchers.IO).async {
         var data = InitRetrofit.getObjectResponse()
-            if(data!= null) {
+               if(data!= null) {
                 loadedData = data
                 CacheRepository.insertData(data)
             }

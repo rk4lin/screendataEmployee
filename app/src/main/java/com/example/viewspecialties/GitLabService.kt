@@ -2,7 +2,7 @@ package com.example.viewspecialties
 
 
 
-import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.modelService.ObjectResponse
 
 import kotlinx.coroutines.Deferred
 import retrofit2.Response

@@ -1,5 +1,6 @@
 package com.example.viewspecialties.presentation.listspecialties.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,12 +10,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.viewspecialties.IBaseView
 import com.example.viewspecialties.databinding.FragmentListSpecialtiesBinding
-import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import com.example.viewspecialties.modelService.Specialty
 import com.example.viewspecialties.presentation.listspecialties.presenter.ListSpecialtiesPresenter
 
 class ListSpecialtiesFragment : Fragment(), IBaseView {
 
-    private lateinit var presenter: ListSpecialtiesPresenter
+    private var presenter= ListSpecialtiesPresenter()
     private lateinit var adapter: SpecialtyListAdapter
 
     private var _binding: FragmentListSpecialtiesBinding? = null
@@ -22,7 +23,11 @@ class ListSpecialtiesFragment : Fragment(), IBaseView {
 
    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = ListSpecialtiesPresenter()
+
+   }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
     override fun onCreateView(
@@ -36,6 +41,7 @@ class ListSpecialtiesFragment : Fragment(), IBaseView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         adapter = SpecialtyListAdapter()
 
         binding.apply {
@@ -44,7 +50,7 @@ class ListSpecialtiesFragment : Fragment(), IBaseView {
         }
     }
 
-    fun getDataSpecialty(data: MutableList<Speciality>) {
+    override fun getDataSpecialty(data: MutableList<Specialty>) {
         adapter.setDataSpecialty(data)
 
     }

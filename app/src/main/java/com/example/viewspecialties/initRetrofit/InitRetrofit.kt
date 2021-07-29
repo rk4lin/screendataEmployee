@@ -1,7 +1,7 @@
 package com.example.viewspecialties.initRetrofit
 
 import com.example.viewspecialties.GitLabApi
-import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.modelService.ObjectResponse
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -43,8 +43,9 @@ object InitRetrofit {
         var service = retrofit.create(GitLabApi::class.java)
 
         var result = service.getListEmployees().await()
-        if(result.isSuccessful) {
-            return result.body()
+
+         if(result.isSuccessful) {
+             return result.body()
         }
         else{
             return null
@@ -52,11 +53,5 @@ object InitRetrofit {
 
     }
 
-   /* suspend fun getCurrentResult() =
-        CoroutineScope(Dispatchers.IO).async {
-            return@async getObjectResponse()
-
-        }.await()*/
-
-    }
+   }
 

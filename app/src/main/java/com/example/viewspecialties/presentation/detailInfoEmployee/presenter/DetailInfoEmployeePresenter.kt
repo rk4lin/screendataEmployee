@@ -3,9 +3,9 @@ package com.example.viewspecialties.presentation.detailInfoEmployee.presenter
 import com.example.viewspecialties.BasePresenter
 import com.example.viewspecialties.cacheRepository.CacheDataRepository
 import com.example.viewspecialties.presentation.detailInfoEmployee.view.DetailFragment
-import com.example.viewspecialties.presentation.listspecialties.model.Employee
-import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
-import com.example.viewspecialties.presentation.listspecialties.model.Speciality
+import com.example.viewspecialties.modelService.Employee
+import com.example.viewspecialties.modelService.ObjectResponse
+import com.example.viewspecialties.modelService.Specialty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,12 +27,12 @@ class DetailInfoEmployeePresenter : BasePresenter<DetailFragment>() {
     private fun getSpecialtyModel(data: ObjectResponse)  {
 
         var employees = mutableListOf<Employee>()
-        var specialty = mutableListOf<Speciality>()
+        var specialty = mutableListOf<Specialty>()
 
        data.resp.forEach {
           specialty.addAll( it.specialty!!.map{
-               Speciality(
-                   it.speciality_id,
+               Specialty(
+                   it.specialty_id,
                    it.name
                )
            })
@@ -47,7 +47,7 @@ class DetailInfoEmployeePresenter : BasePresenter<DetailFragment>() {
                     birthday = resp.birthday,
                     avatr_url = if (!resp.avatr_url.isNullOrBlank()) resp.avatr_url else "",
                     specialty = specialty,
-                    age = resp.age
+                   
                 )
             )
         }

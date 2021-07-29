@@ -2,7 +2,7 @@ package com.example.viewspecialties.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.modelService.ObjectResponse
 
 
 @Entity(tableName = "cache_response")

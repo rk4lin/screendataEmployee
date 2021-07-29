@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewspecialties.R
-import com.example.viewspecialties.presentation.listspecialties.model.Employee
+import com.example.viewspecialties.modelService.Employee
 
 class DetailViewHolder(view: View): RecyclerView.ViewHolder(view) {
 

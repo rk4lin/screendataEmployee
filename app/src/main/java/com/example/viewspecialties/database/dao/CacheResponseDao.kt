@@ -3,7 +3,7 @@ package com.example.viewspecialties.database.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.viewspecialties.presentation.listspecialties.model.ObjectResponse
+import com.example.viewspecialties.modelService.ObjectResponse
 
 @Dao
 interface CacheResponseDao {
