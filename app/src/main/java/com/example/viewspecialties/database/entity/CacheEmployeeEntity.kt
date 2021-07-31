@@ -5,20 +5,21 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity(tableName = "cache_employee",
-        foreignKeys = [ForeignKey(
-            entity = CacheSpecialtyEntity::class,
-            parentColumns = ["key"],
-            childColumns = ["specialty_key"],
-            onDelete = ForeignKey.CASCADE
-        )])
-    data class CacheEmployeeEntity(
-        @PrimaryKey(autoGenerate = true)
-        val id: Int,
-        val f_name: String?,
-        val l_name: String?,
-        val birthday: String?,
-        val avatr_url: String?,
-        val specialty_key: Int
-    )
+@Entity(
+    tableName = "cache_employee",
+    foreignKeys =[ ForeignKey(
+        entity = CacheSpecialtyEntity::class,
+        parentColumns = ["specialty_id"],
+        childColumns = ["specId"],
+        )]
+)
+data class CacheEmployeeEntity(
+    @PrimaryKey
+    val f_name: String,
+    val l_name: String,
+    val birthday: String,
+    val age: Int,
+    val avatr_url: String? = null,
+    val specId: Long
+)
 

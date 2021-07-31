@@ -10,12 +10,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailInfoEmployeePresenter : BasePresenter<DetailFragment>() {
+class DetailInfoEmployeePresenter /*: BasePresenter<DetailFragment>()*/ {
 
-     override fun onAttach(view: DetailFragment) {
-        super.onAttach(view)
-        getDataDetailEmployee()
-    }
+//     override fun onAttach(view: DetailFragment) {
+//        super.onAttach(view)
+//        getDataDetailEmployee()
+//    }
 
     private fun getDataDetailEmployee() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -52,7 +52,7 @@ class DetailInfoEmployeePresenter : BasePresenter<DetailFragment>() {
             )
         }
 
-        view?.getDataDetailEmployee(employees)
+        //view?.getDataDetailEmployee(employees)
     }
 
     fun refresh(){

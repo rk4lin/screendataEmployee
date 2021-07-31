@@ -6,12 +6,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.viewspecialties.R
 import com.example.viewspecialties.modelService.Specialty
 
+interface OnItemClick {
+    fun onClicked(id: Int)
+}
 
-class SpecialtyListAdapter :  RecyclerView.Adapter<SpecialtyViewHolder>(){
-    /*var employeeLocallist = mutableListOf<Employee>()*/
+class SpecialtyListAdapter : RecyclerView.Adapter<SpecialtyViewHolder>() {
+
+    private var clickHandler: OnItemClick? = null
+
     var specialtyLocallist = mutableListOf<Specialty>()
 
-    fun setDataSpecialty(items: List<Specialty>){
+    fun initClick(handler: OnItemClick) {
+        clickHandler = handler
+    }
+
+    fun setDataSpecialty(items: List<Specialty>) {
 
         specialtyLocallist.clear()
         specialtyLocallist.addAll(items)
@@ -19,11 +28,11 @@ class SpecialtyListAdapter :  RecyclerView.Adapter<SpecialtyViewHolder>(){
         notifyDataSetChanged()
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpecialtyViewHolder {
-       return SpecialtyViewHolder(LayoutInflater.from(parent.context)
-           .inflate(R.layout.cell_sepcialty, parent, false))
+        return SpecialtyViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.cell_sepcialty, parent, false),
+            clickHandler
+        )
     }
 
     override fun onBindViewHolder(holder: SpecialtyViewHolder, position: Int) {

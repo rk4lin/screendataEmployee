@@ -1,32 +1,31 @@
 package com.example.viewspecialties.database
 
-import android.app.Application
-import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.viewspecialties.database.dao.CacheResponseDao
+import com.example.viewspecialties.AppSpecialty
+
 import com.example.viewspecialties.database.dao.CacheSpecialtyDao
 import com.example.viewspecialties.database.entity.CacheEmployeeEntity
-import com.example.viewspecialties.database.entity.CacheResponseEntity
+
 import com.example.viewspecialties.database.entity.CacheSpecialtyEntity
 
 
 @Database(
     entities = [
-        //CacheEmployeeEntity::class,
-        CacheResponseEntity::class,
-        //  CacheSpecialtyEntity::class
+        CacheEmployeeEntity::class,
+
+        CacheSpecialtyEntity::class
     ],
-    version = 1
+    version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
 
 
-    abstract fun cacheResponseDao(): CacheResponseDao
+    //abstract fun cacheResponseDao(): CacheResponseDao
 
-    // abstract fun cacheEmployeeDao(): CacheEmployeeDao
-    // abstract fun cacheSpecialtyDao(): CacheSpecialtyDao
+     abstract fun cacheEmployeeDao(): CacheEmployeeDao
+     abstract fun cacheSpecialtyDao(): CacheSpecialtyDao
     companion object {
         @Volatile
         private var instance: AppDatabase? = null

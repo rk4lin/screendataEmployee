@@ -11,5 +11,7 @@ abstract class BasePresenter<V: IBaseView> {
     open fun onDetach() {
         this.view = null
     }
+    open fun onDestroy() {
+    }
 
 }

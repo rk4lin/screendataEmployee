@@ -2,6 +2,8 @@ package com.example.viewspecialties.cacheRepository
 
 import android.util.Log
 import com.example.viewspecialties.database.AppDatabase
+import com.example.viewspecialties.database.entity.CacheEmployeeEntity
+import com.example.viewspecialties.database.entity.CacheSpecialtyEntity
 import com.example.viewspecialties.modelService.Employee
 import com.example.viewspecialties.modelService.ObjectResponse
 import com.example.viewspecialties.modelService.Specialty
@@ -13,17 +15,17 @@ import java.lang.Exception
 object CacheRepository {
 
     //эту штуку будем использовать в interactor дергать
-    fun getData(): Deferred<ObjectResponse?> {
+    fun getEployees(specialtyId: Int): Deferred<List<CacheEmployeeEntity>?> {
         return CoroutineScope(Dispatchers.IO).async {
 
             try {
                 val db = AppDatabase.invoke()
-                val objectResponse =db.cacheResponseDao().getData()
-
-                if(objectResponse == null){
+                val employees =db.cacheEmployeeDao().getById(specialtyId)
+                println("cacheRepository запрос в базу $employees")
+                if(employees == null){
                     return@async null
                 }else{
-                    val data = ObjectResponse(
+                  /*  val data = ObjectResponse(
                         objectResponse.resp.map{ empl ->
                             Employee(
                                 f_name = empl.f_name,
@@ -39,9 +41,9 @@ object CacheRepository {
                                 }//map
                             )//Employee
                         }//map Employee
-                    )//Objectresponse
+                    )//Objectresponse*/
 
-                    return@async data
+                    return@async employees
                 }//else
             } catch (ex: Exception){
 
@@ -56,37 +58,35 @@ object CacheRepository {
 
     fun insertData(data: ObjectResponse)=
         CoroutineScope(Dispatchers.IO).async {
-            /*var employees = data.resp.map{e->
+
+            var employees = data.resp.map{e->
                 CacheEmployeeEntity(
-                    id =0,
                     f_name = e.f_name,
                     l_name = e.l_name,
-                    birthday = e.birthday,
+                    birthday = e.birthday?: "др не указано",
                     avatr_url = e.avatr_url,
-                    specialty_key = 0
+                    specId = 0,
+                    age = 23
 
                 )
             }
 
-             data.resp.forEach{
-                 var speciality=   it.specialty?.map{
-                        CacheSpecialtyEntity(
-                            key = 0,
-                            specialty_id = it.speciality_id,
-                            name = it.name
-                        )
-                    }
-                 }*/
-
             try{
                 val db = AppDatabase.invoke()
-               db.cacheResponseDao().insertResponse(data)
+                Log.d("данные в базу","$employees")
+
+               // db.cacheResponseDao().insertResponse(data)
+                db.cacheEmployeeDao().insertAll(employees)
+                //db.cacheSpecialtyDao().insertSpecialty(specialty)
                 return@async true
             }catch (ex: Exception){
                 Log.e("CachRespository_Insert", "Ошибка: ${ex.message}", ex)
                 return@async false
             }
             }
+
+
+
 }
 
 

@@ -5,13 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.viewspecialties.IBaseView
+
 import com.example.viewspecialties.databinding.FragmentDetailBinding
 import com.example.viewspecialties.presentation.detailInfoEmployee.presenter.DetailInfoEmployeePresenter
 import com.example.viewspecialties.modelService.Employee
 import com.example.viewspecialties.modelService.Specialty
 
-class DetailFragment : Fragment(), IBaseView {
+class DetailFragment : Fragment() {
 
    private lateinit var presenter: DetailInfoEmployeePresenter
 
@@ -47,8 +47,9 @@ class DetailFragment : Fragment(), IBaseView {
 
     }
 
-    override fun getDataSpecialty(data: MutableList<Specialty>) {
-        TODO("Not yet implemented")
+    companion object{
+        var NAME_EMPLOYEE_KEY = "employee_name"
     }
+
 
 }

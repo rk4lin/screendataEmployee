@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "cache_specialty")
 data class CacheSpecialtyEntity(
-    @PrimaryKey(autoGenerate = true)
-    val key: Int,
+    @PrimaryKey
     val specialty_id: Int,
-    val name: String
+    val name: String,
+
 
 )
