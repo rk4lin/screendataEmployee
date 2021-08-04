@@ -17,7 +17,7 @@ class SpecialtyViewHolder(view: View,private val  handler: OnItemClick?) : Recyc
        name.text = specialty.name
 
         name.setOnClickListener{
-            handler?.onClicked(id = specialty.specialty_id)
+            handler?.onClicked(id = specialty.specialty_id, name = specialty.name)
         }
     }
 

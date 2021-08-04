@@ -29,7 +29,6 @@ class ListEmployeesPresenter : BasePresenter<IListEmployeeFragment>() {
           var castToEmployeeClient =  CacheDataRepository.returnData()
             var specialty = mutableListOf<SpecialtyLocal>()
             var empl = mutableListOf<EmployeeLocal>()
-          println("1 заход $castToEmployeeClient")
 
           castToEmployeeClient.resp.forEach { e->
               specialty.addAll(e.specialty.map {
@@ -47,17 +46,15 @@ specialty = specialty.distinct().toMutableList()
             {
                 empl.add(
                     EmployeeLocal(
-                    f_name = e.f_name,
-                    l_name = e.l_name,
+                    f_name = e.f_name.lowercase().capitalize(),
+                    l_name = e.l_name.lowercase().capitalize(),
                     birthday = e.birthday ?: "нет даты рождения"
                 ))
             }
 
             }
 
-            println("2 заход $empl")
-
-           /* var employees = CacheRepository.getEployees(specialtyId!!).await()
+             /* var employees = CacheRepository.getEployees(specialtyId!!).await()
 
             println("сотрудники по спец ${employees}")
             if (employees != null) {

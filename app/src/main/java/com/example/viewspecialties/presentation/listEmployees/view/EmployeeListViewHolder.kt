@@ -7,6 +7,7 @@ import com.example.viewspecialties.R
 import com.example.viewspecialties.modelService.Employee
 import com.example.viewspecialties.presentation.detailInfoEmployee.model.EmployeeLocal
 import com.example.viewspecialties.presentation.listspecialties.view.OnItemClick
+import java.text.SimpleDateFormat
 
 class EmployeeListViewHolder(view: View, private val handler: OnEmployeeClick?) :
     RecyclerView.ViewHolder(view) {
@@ -21,11 +22,11 @@ class EmployeeListViewHolder(view: View, private val handler: OnEmployeeClick?) 
     fun bind(employee: EmployeeLocal){
         f_name.text = employee.f_name
         l_name.text = employee.l_name
-        birthday.text = employee.birthday
+        birthday.text = SimpleDateFormat("dd.MM.yyyy").format(SimpleDateFormat("yyyy-MM-dd").parse(employee.birthday))
         //age.text = employee.f_name
 
         container.setOnClickListener{
-            handler?.onClicked(name = employee.f_name)
+            handler?.onClicked(name = employee.f_name, sourname = employee.l_name)
         }
     }
 }

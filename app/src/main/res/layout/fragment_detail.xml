@@ -6,8 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.detailInfoEmployee.view.DetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+      <TextView
         android:id="@+id/name_section_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,7 +25,8 @@
             android:layout_marginLeft="14dp"
             android:layout_marginTop="60dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_section_detail" />
+            app:layout_constraintTop_toBottomOf="@id/name_section_detail"
+            android:layout_marginStart="14dp" />
 
         <TextView
             android:id="@+id/name"
@@ -70,6 +70,19 @@
             android:text="age"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/birthday" />
+
+        <TextView
+            android:id="@+id/specialtyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:text="specialty Name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/age" />
+
+
     </LinearLayout>
 
 

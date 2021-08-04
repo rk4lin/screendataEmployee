@@ -1,6 +1,7 @@
 package com.example.viewspecialties.presentation.listspecialties.view
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,11 +17,13 @@ import com.example.viewspecialties.R
 
 import com.example.viewspecialties.databinding.FragmentListSpecialtiesBinding
 import com.example.viewspecialties.modelService.Specialty
+import com.example.viewspecialties.presentation.detailInfoEmployee.view.DetailFragment
 import com.example.viewspecialties.presentation.listEmployees.view.ListEmployeesFragment
 import com.example.viewspecialties.presentation.listspecialties.presenter.ListSpecialtiesPresenter
 
 class ListSpecialtiesFragment : BaseFragment(), ISpecialtyView {
 
+    private lateinit var shara: SharedPreferences
 
     private lateinit var presenter: ListSpecialtiesPresenter
     private lateinit var adapter: SpecialtyListAdapter
@@ -58,8 +61,8 @@ class ListSpecialtiesFragment : BaseFragment(), ISpecialtyView {
         }
 
         adapter.initClick(object : OnItemClick {
-            override fun onClicked(id: Int) {
-                navigateToEployeeList(id)
+            override fun onClicked(id: Int, name: String) {
+                navigateToEployeeList(id, name)
             }
 
         })
@@ -71,19 +74,23 @@ class ListSpecialtiesFragment : BaseFragment(), ISpecialtyView {
 
     }
 
-    private fun navigateToEployeeList(specialtyId: Int) {
+    private fun navigateToEployeeList(specialtyId: Int, specialtyName: String) {
         var bundle = Bundle()
         if (specialtyId != 0) {
             bundle.putInt(ListEmployeesFragment.KEY_ID_SPECIALTY, specialtyId)
+            bundle.putString(ListEmployeesFragment.SPECIALTY_KEY, specialtyName)
             findNavController().navigate(
                 R.id.action_listSpecialtiesFragment_to_listEmployeesFragment,
                 bundle
             )
-        }
-
-        else{
+        } else {
             //TODO месадж об не возможности перехода
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 

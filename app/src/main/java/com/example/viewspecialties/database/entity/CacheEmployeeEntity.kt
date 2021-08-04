@@ -15,10 +15,10 @@ import java.util.*
 )
 data class CacheEmployeeEntity(
     @PrimaryKey
+    val specialty_id: Int? = null,
     val f_name: String,
     val l_name: String,
     val birthday: String,
-    val age: Int,
     val avatr_url: String? = null,
     val specId: Long
 )

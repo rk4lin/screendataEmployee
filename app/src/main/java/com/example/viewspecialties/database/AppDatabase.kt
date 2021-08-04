@@ -17,7 +17,7 @@ import com.example.viewspecialties.database.entity.CacheSpecialtyEntity
 
         CacheSpecialtyEntity::class
     ],
-    version = 2
+    version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
 

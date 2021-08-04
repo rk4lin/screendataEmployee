@@ -1,62 +1,73 @@
 package com.example.viewspecialties.presentation.detailInfoEmployee.presenter
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.viewspecialties.BasePresenter
+
 import com.example.viewspecialties.cacheRepository.CacheDataRepository
-import com.example.viewspecialties.presentation.detailInfoEmployee.view.DetailFragment
+
 import com.example.viewspecialties.modelService.Employee
 import com.example.viewspecialties.modelService.ObjectResponse
 import com.example.viewspecialties.modelService.Specialty
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.viewspecialties.presentation.detailInfoEmployee.model.EmployeeDetail
+import com.example.viewspecialties.presentation.detailInfoEmployee.view.IDetailFragment
+import kotlinx.coroutines.*
+import org.joda.time.Years
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Year
+import java.time.format.DateTimeFormatter
+import java.util.*
 
-class DetailInfoEmployeePresenter /*: BasePresenter<DetailFragment>()*/ {
+class DetailInfoEmployeePresenter : BasePresenter<IDetailFragment>() {
 
-//     override fun onAttach(view: DetailFragment) {
-//        super.onAttach(view)
-//        getDataDetailEmployee()
-//    }
+    private var detailInfo: EmployeeDetail? = null
 
-    private fun getDataDetailEmployee() {
-        CoroutineScope(Dispatchers.IO).launch {
-            var responseData = CacheDataRepository.requestData().await()
-            getSpecialtyModel(responseData!!)
+    override fun onAttach(view: IDetailFragment) {
+        super.onAttach(view)
+        var data = CacheDataRepository.returnData()
+        detailInfo = getSpecialtyModel(data)
+    }
+
+    fun getDetailInfo(): EmployeeDetail? {
+        if(detailInfo != null){
+         return detailInfo
+        }
+        else{
+            return null
         }
     }
 
-    private fun getSpecialtyModel(data: ObjectResponse)  {
 
-        var employees = mutableListOf<Employee>()
-        var specialty = mutableListOf<Specialty>()
+     private fun getSpecialtyModel(data: ObjectResponse) : EmployeeDetail?{
 
-       data.resp.forEach {
-          specialty.addAll( it.specialty!!.map{
-               Specialty(
-                   it.specialty_id,
-                   it.name
-               )
-           })
-        }
+        var name = view?.getTriple()?.first
+        var sourname = view?.getTriple()?.second
+         var specialty = view?.getTriple()?.third
 
+        data.resp.filter { e ->
+            e.f_name.lowercase().capitalize() == name && e.l_name.lowercase().capitalize() == sourname
+        }.map {
+            return EmployeeDetail(
+                it.f_name.lowercase().capitalize(),
+                it.l_name.lowercase().capitalize(),
+                it.avatr_url,
+                age = getAgeEmployee(it.birthday!!),
+                birthday = it.birthday,
+                specialty = specialty!!
 
-        data.resp.map { resp ->
-            employees.add(
-                Employee(
-                    f_name = resp.f_name,
-                    l_name = resp.l_name,
-                    birthday = resp.birthday,
-                    avatr_url = if (!resp.avatr_url.isNullOrBlank()) resp.avatr_url else "",
-                    specialty = specialty,
-                   
-                )
             )
         }
-
-        //view?.getDataDetailEmployee(employees)
+         return null
     }
 
-    fun refresh(){
-        getDataDetailEmployee()
+
+    private fun getAgeEmployee(date: String): String{
+
+        var age = Years.yearsBetween(org.joda.time.LocalDate.parse(date), org.joda.time.LocalDate.now())
+         return age.years.toString()
+
+
     }
 
 }

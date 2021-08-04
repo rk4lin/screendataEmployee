@@ -52,22 +52,18 @@ object CacheRepository {
 
         }
     }
-  private fun getAge(birthday: String) : Int{
-      return 11
-  }
 
     fun insertData(data: ObjectResponse)=
         CoroutineScope(Dispatchers.IO).async {
 
             var employees = data.resp.map{e->
                 CacheEmployeeEntity(
+
                     f_name = e.f_name,
                     l_name = e.l_name,
-                    birthday = e.birthday?: "др не указано",
+                    birthday = e.birthday?: "-",
                     avatr_url = e.avatr_url,
                     specId = 0,
-                    age = 23
-
                 )
             }
 

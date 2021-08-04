@@ -7,7 +7,7 @@ import com.example.viewspecialties.R
 import com.example.viewspecialties.modelService.Specialty
 
 interface OnItemClick {
-    fun onClicked(id: Int)
+    fun onClicked(id: Int, name: String)
 }
 
 class SpecialtyListAdapter : RecyclerView.Adapter<SpecialtyViewHolder>() {

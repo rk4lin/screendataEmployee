@@ -19,14 +19,10 @@ class ListEmployeesFragment : BaseFragment(), IListEmployeeFragment {
    private var _binding: FragmentListEmployeesBinding? = null
     private val binding get() = _binding!!
     private var specialtyId: Int? = null
+    private var specialtyName: String? = null
     private lateinit var presenter: ListEmployeesPresenter
 
     private lateinit var adapter: EmployeeListAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -38,6 +34,7 @@ class ListEmployeesFragment : BaseFragment(), IListEmployeeFragment {
         savedInstanceState: Bundle?
     ): View {
         specialtyId = arguments?.getInt(KEY_ID_SPECIALTY)!!.toInt()
+        specialtyName = arguments?.getString(SPECIALTY_KEY)
         _binding = FragmentListEmployeesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -53,17 +50,19 @@ class ListEmployeesFragment : BaseFragment(), IListEmployeeFragment {
         }
 
         adapter.initClick(object: OnEmployeeClick{
-            override fun onClicked(name: String) {
-                navigateToDetailEmployee(name)
+            override fun onClicked(name: String, sourname: String) {
+                navigateToDetailEmployee(name,sourname, specialtyName!!)
             }
         })
 
     }
 
-   fun navigateToDetailEmployee(name: String){
+   fun navigateToDetailEmployee(name: String, sourname: String, specialtyName: String){
        var bundle = Bundle()
        if(!name.isNullOrBlank()){
        bundle.putString(DetailFragment.NAME_EMPLOYEE_KEY, name)
+       bundle.putString(DetailFragment.SOURNAME_EMPLOYEE_KEY, sourname)
+       bundle.putString(DetailFragment.SPECIALTY_NAME_KEY, specialtyName)
 
        findNavController().navigate(R.id.action_listEmployeesFragment_to_detailFragment, bundle)
        }else{
@@ -78,8 +77,13 @@ class ListEmployeesFragment : BaseFragment(), IListEmployeeFragment {
         adapter.setData(employeeModel)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
     companion object{
         const val KEY_ID_SPECIALTY = "specialty_id"
+        const val SPECIALTY_KEY="spec"
     }
 
 }

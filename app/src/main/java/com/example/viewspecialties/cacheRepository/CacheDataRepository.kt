@@ -14,8 +14,9 @@ object CacheDataRepository {
         CoroutineScope(Dispatchers.IO).async {
             var data = InitRetrofit.getObjectResponse()
             if (data != null) {
+
                 loadedData = data
-                    CacheRepository.insertData(data)
+                 CacheRepository.insertData(data)
             }
             return@async data
         }

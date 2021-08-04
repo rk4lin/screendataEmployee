@@ -9,7 +9,7 @@ import com.example.viewspecialties.presentation.detailInfoEmployee.model.Employe
 import com.example.viewspecialties.presentation.listspecialties.view.OnItemClick
 
 interface OnEmployeeClick{
-    fun onClicked(name: String)
+    fun onClicked(name: String, sourname: String)
 }
 
 class EmployeeListAdapter : RecyclerView.Adapter<EmployeeListViewHolder>() {
