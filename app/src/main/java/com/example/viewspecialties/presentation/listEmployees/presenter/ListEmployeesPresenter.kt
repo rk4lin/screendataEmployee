@@ -48,7 +48,7 @@ specialty = specialty.distinct().toMutableList()
                     EmployeeLocal(
                     f_name = e.f_name.lowercase().capitalize(),
                     l_name = e.l_name.lowercase().capitalize(),
-                    birthday = e.birthday ?: "нет даты рождения"
+                    birthday = e.birthday ?: "-"
                 ))
             }
 

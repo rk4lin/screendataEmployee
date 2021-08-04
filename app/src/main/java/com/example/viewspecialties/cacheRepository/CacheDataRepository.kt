@@ -12,9 +12,12 @@ object CacheDataRepository {
 
     fun requestData() =
         CoroutineScope(Dispatchers.IO).async {
+            if(loadedData != null){
+                return@async loadedData
+            }
+
             var data = InitRetrofit.getObjectResponse()
             if (data != null) {
-
                 loadedData = data
                  CacheRepository.insertData(data)
             }

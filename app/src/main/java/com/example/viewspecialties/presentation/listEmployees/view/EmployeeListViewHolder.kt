@@ -15,15 +15,18 @@ class EmployeeListViewHolder(view: View, private val handler: OnEmployeeClick?) 
     private var container: View = view.findViewById(R.id.conteiner_info_empl)
     private var f_name: TextView = view.findViewById(R.id.name_epml)
     private var l_name: TextView = view.findViewById(R.id.sourname_empl)
-   // private var age: TextView = view.findViewById(R.id.age_empl)
     private var birthday: TextView = view.findViewById(R.id.age_empl)
 
 
     fun bind(employee: EmployeeLocal){
         f_name.text = employee.f_name
         l_name.text = employee.l_name
-        birthday.text = SimpleDateFormat("dd.MM.yyyy").format(SimpleDateFormat("yyyy-MM-dd").parse(employee.birthday))
-        //age.text = employee.f_name
+        if(employee.birthday == "-"){
+            birthday.text = "-"
+        }else{
+            birthday.text = SimpleDateFormat("dd.MM.yyyy").format(SimpleDateFormat("yyyy-MM-dd").parse(employee.birthday))
+        }
+
 
         container.setOnClickListener{
             handler?.onClicked(name = employee.f_name, sourname = employee.l_name)

@@ -13,9 +13,8 @@ import kotlinx.coroutines.*
 import java.lang.Exception
 
 object CacheRepository {
-
-    //эту штуку будем использовать в interactor дергать
-    fun getEployees(specialtyId: Int): Deferred<List<CacheEmployeeEntity>?> {
+private var specialty: MutableList<CacheSpecialtyEntity>? = null
+/*   fun getEployees(specialtyId: Int): Deferred<List<CacheEmployeeEntity>?> {
         return CoroutineScope(Dispatchers.IO).async {
 
             try {
@@ -25,7 +24,7 @@ object CacheRepository {
                 if(employees == null){
                     return@async null
                 }else{
-                  /*  val data = ObjectResponse(
+                  *//*  val data = ObjectResponse(
                         objectResponse.resp.map{ empl ->
                             Employee(
                                 f_name = empl.f_name,
@@ -41,7 +40,7 @@ object CacheRepository {
                                 }//map
                             )//Employee
                         }//map Employee
-                    )//Objectresponse*/
+                    )//Objectresponse*//*
 
                     return@async employees
                 }//else
@@ -51,7 +50,7 @@ object CacheRepository {
             }
 
         }
-    }
+    }*/
 
     fun insertData(data: ObjectResponse)=
         CoroutineScope(Dispatchers.IO).async {
@@ -66,13 +65,24 @@ object CacheRepository {
                     specId = 0,
                 )
             }
+            data.resp.forEach { empl->
+                empl.specialty.map{
+                    var spec = CacheSpecialtyEntity(
+                        specialty_id = it.specialty_id,
+                        name = it.name
+                    )
+                    specialty?.add(spec)
+                }
+            }
+            specialty = specialty?.distinct()?.toMutableList()
 
             try{
                 val db = AppDatabase.invoke()
-                Log.d("данные в базу","$employees")
 
-               // db.cacheResponseDao().insertResponse(data)
-                db.cacheEmployeeDao().insertAll(employees)
+                db.cacheEmployeeDao().deleteAllEmployee()
+                db.cacheEmployeeDao().insertEmployee(employees)
+                db.cacheSpecialtyDao().deleteAllSpecialty()
+                db.cacheSpecialtyDao().insertSpecialty(specialty!!)
                 //db.cacheSpecialtyDao().insertSpecialty(specialty)
                 return@async true
             }catch (ex: Exception){

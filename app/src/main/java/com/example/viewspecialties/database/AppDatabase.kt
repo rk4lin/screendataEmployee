@@ -17,15 +17,14 @@ import com.example.viewspecialties.database.entity.CacheSpecialtyEntity
 
         CacheSpecialtyEntity::class
     ],
-    version = 3
+    version = 4
 )
 abstract class AppDatabase : RoomDatabase() {
 
 
-    //abstract fun cacheResponseDao(): CacheResponseDao
-
      abstract fun cacheEmployeeDao(): CacheEmployeeDao
      abstract fun cacheSpecialtyDao(): CacheSpecialtyDao
+
     companion object {
         @Volatile
         private var instance: AppDatabase? = null

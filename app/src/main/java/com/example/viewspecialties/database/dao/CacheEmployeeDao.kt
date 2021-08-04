@@ -2,6 +2,7 @@ package com.example.viewspecialties.database
 
 import androidx.room.*
 import com.example.viewspecialties.database.entity.CacheEmployeeEntity
+import com.example.viewspecialties.database.entity.CacheSpecialtyEntity
 import com.example.viewspecialties.modelService.Employee
 
 
@@ -14,9 +15,9 @@ interface CacheEmployeeDao {
     fun getById(specialtyId: Int) : List<CacheEmployeeEntity>
 
     @Insert
-    fun insertEmployee(employee: CacheEmployeeEntity)
+    fun insertEmployee(employee: List<CacheEmployeeEntity>)
 
-    @Insert
-    fun insertAll(employees: List<CacheEmployeeEntity>)
+    @Query("DELETE FROM cache_employee")
+    fun deleteAllEmployee()
 
 }

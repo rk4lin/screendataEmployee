@@ -12,5 +12,8 @@ interface CacheSpecialtyDao {
     fun getSpecialty() : List<Specialty>
 
     @Insert
-    fun insertSpecialty(specialties: List<CacheSpecialtyEntity>)
+    fun insertSpecialty(specialties: MutableList<CacheSpecialtyEntity>)
+
+    @Query("DELETE FROM cache_specialty")
+    fun deleteAllSpecialty()
 }

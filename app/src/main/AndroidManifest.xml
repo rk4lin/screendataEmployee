@@ -13,8 +13,8 @@
         android:theme="@style/Theme.ViewSpecialties">
         <activity android:name=".MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-
+            android:screenOrientation="portrait"
+            android:theme="@style/LauncherAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
