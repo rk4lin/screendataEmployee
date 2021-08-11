@@ -17,7 +17,7 @@ class EmployeeListViewHolder(view: View, private val handler: OnEmployeeClick?) 
     private var l_name: TextView = view.findViewById(R.id.sourname_empl)
     private var birthday: TextView = view.findViewById(R.id.age_empl)
 
-
+//
     fun bind(employee: EmployeeLocal){
         f_name.text = employee.f_name
         l_name.text = employee.l_name
